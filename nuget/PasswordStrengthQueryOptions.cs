@@ -12,7 +12,6 @@ namespace APIVerve.API.PasswordStrength
     {
         /// <summary>
         /// The password to check the strength of
-        /// Example: Password123
         /// </summary>
         [JsonProperty("password")]
         public string Password { get; set; }
