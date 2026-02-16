@@ -224,8 +224,9 @@ from apiverve_passwordstrength.apiClient import PasswordstrengthAPIClient
 
 api = PasswordstrengthAPIClient("[YOUR_API_KEY]")
 
+query = { "password": "Password123" }
+
 try:
-    query = { "password": "Password123" }
     result = api.execute(query)
     print(result)
 finally:
