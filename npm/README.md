@@ -1,6 +1,6 @@
 # Password Strength API
 
-Password Strength is a simple tool for checking the strength of a password. It returns the strength of the password based on various factors.
+Password Strength checks how strong a password is. It returns a strength label and score, a breakdown of the character types used, weak-pattern detection, theoretical entropy in bits, and recommendations to improve it.
 
 ![Build Status](https://img.shields.io/badge/build-passing-green)
 ![Code Climate](https://img.shields.io/badge/maintainability-B-purple)
@@ -123,14 +123,23 @@ async function makeRequest() {
   "error": null,
   "data": {
     "strength": "weak",
+    "score": 1,
     "passwordInfo": {
       "length": 11,
       "hasSpecialCharacters": false,
       "hasNumbers": true,
       "hasLowercase": true,
       "hasUppercase": true,
-      "hasSpaces": false
-    }
+      "hasSpaces": false,
+      "hasSequentialChars": true,
+      "hasRepeatedChars": false
+    },
+    "recommendations": [
+      "Use at least 12 characters",
+      "Add special characters",
+      "Avoid sequential characters (e.g. abc, 123)"
+    ],
+    "entropyBits": 65.5
   }
 }
 ```
