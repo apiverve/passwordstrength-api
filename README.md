@@ -1,6 +1,6 @@
 # [Password Strength API](https://apiverve.com/marketplace/passwordstrength?utm_source&#x3D;github&amp;utm_medium&#x3D;readme)
 
-Password Strength is a simple tool for checking the strength of a password. It returns the strength of the password based on various factors.
+Password Strength checks how strong a password is. It returns a strength label and score, a breakdown of the character types used, weak-pattern detection, theoretical entropy in bits, and recommendations to improve it.
 
 The Password Strength API provides a simple, reliable way to integrate password strength functionality into your applications. Built for developers who need production-ready password strength capabilities without the complexity of building from scratch.
 
@@ -30,7 +30,11 @@ The Password Strength API provides a simple, reliable way to integrate password 
 ```javascript
 async function callPasswordStrengthAPI() {
     try {
-        const response = await fetch('https://api.apiverve.com/v1/passwordstrength', {
+        const params = new URLSearchParams({
+            password: 'Password123'
+        });
+
+        const response = await fetch(`https://api.apiverve.com/v1/passwordstrength?${params}`, {
             method: 'GET',
             headers: {
                 'x-api-key': 'YOUR_API_KEY_HERE'
@@ -50,7 +54,7 @@ callPasswordStrengthAPI();
 ### Using cURL
 
 ```bash
-curl -X GET "https://api.apiverve.com/v1/passwordstrength?param=value" \
+curl -X GET "https://api.apiverve.com/v1/passwordstrength?password=Password123" \
   -H "x-api-key: YOUR_API_KEY_HERE"
 ```
 
@@ -150,7 +154,7 @@ go get github.com/apiverve/passwordstrength-api/go
 |---------|---------|
 | **Multi-language SDKs** | Native packages for JavaScript, Python, C#, Go, and Android |
 | **Simple Integration** | Single API key authentication, consistent response format |
-| **Production Ready** | 99.9% uptime, fast response times, used by thousands of developers |
+| **Production Ready** | 99.9% uptime SLA, served from 24 global regions |
 | **Comprehensive Docs** | Full examples, OpenAPI spec, and dedicated support |
 
 ---
@@ -169,7 +173,7 @@ go get github.com/apiverve/passwordstrength-api/go
 The Password Strength API is commonly used for:
 
 - **Web Applications** - Add password strength features to your frontend or backend
-- **Mobile Apps** - Native SDKs for iOS and Android development
+- **Mobile Apps** - Native SDKs for Android development
 - **Automation** - Integrate with n8n, Zapier, or custom workflows
 - **SaaS Products** - Enhance your product with password strength capabilities
 - **Data Pipelines** - Process and analyze data at scale
