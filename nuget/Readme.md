@@ -1,7 +1,7 @@
 PasswordStrength API
 ============
 
-Password Strength is a simple tool for checking the strength of a password. It returns the strength of the password based on various factors.
+Password Strength checks how strong a password is. It returns a strength label and score, a breakdown of the character types used, weak-pattern detection, theoretical entropy in bits, and recommendations to improve it.
 
 ![Build Status](https://img.shields.io/badge/build-passing-green)
 ![Code Climate](https://img.shields.io/badge/maintainability-B-purple)
@@ -51,7 +51,7 @@ Here's a simple example to get you started quickly:
 
 ```csharp
 using System;
-using APIVerve;
+using APIVerve.API.PasswordStrength;
 
 class Program
 {
@@ -60,8 +60,8 @@ class Program
         // Initialize the API client
         var apiClient = new PasswordStrengthAPIClient("[YOUR_API_KEY]");
 
-        var queryOptions = new QueryOptions {
-    password = "Password123"
+        var queryOptions = new PasswordStrengthQueryOptions {
+    Password = "Password123"
 };
 
         // Make the API call
@@ -116,7 +116,7 @@ The modern async/await pattern provides the best performance and code readabilit
 ```csharp
 using System;
 using System.Threading.Tasks;
-using APIVerve;
+using APIVerve.API.PasswordStrength;
 
 public class Example
 {
@@ -124,8 +124,8 @@ public class Example
     {
         var apiClient = new PasswordStrengthAPIClient("[YOUR_API_KEY]");
 
-        var queryOptions = new QueryOptions {
-    password = "Password123"
+        var queryOptions = new PasswordStrengthQueryOptions {
+    Password = "Password123"
 };
 
         var response = await apiClient.ExecuteAsync(queryOptions);
@@ -148,7 +148,7 @@ If you need to use synchronous code, you can use the `Execute` method:
 
 ```csharp
 using System;
-using APIVerve;
+using APIVerve.API.PasswordStrength;
 
 public class Example
 {
@@ -156,8 +156,8 @@ public class Example
     {
         var apiClient = new PasswordStrengthAPIClient("[YOUR_API_KEY]");
 
-        var queryOptions = new QueryOptions {
-    password = "Password123"
+        var queryOptions = new PasswordStrengthQueryOptions {
+    Password = "Password123"
 };
 
         var response = apiClient.Execute(queryOptions);
@@ -185,7 +185,7 @@ The API client provides comprehensive error handling. Here are some examples:
 ```csharp
 using System;
 using System.Threading.Tasks;
-using APIVerve;
+using APIVerve.API.PasswordStrength;
 
 public class Example
 {
@@ -193,8 +193,8 @@ public class Example
     {
         var apiClient = new PasswordStrengthAPIClient("[YOUR_API_KEY]");
 
-        var queryOptions = new QueryOptions {
-    password = "Password123"
+        var queryOptions = new PasswordStrengthQueryOptions {
+    Password = "Password123"
 };
 
         try
@@ -237,7 +237,7 @@ public class Example
 ```csharp
 using System;
 using System.Threading.Tasks;
-using APIVerve;
+using APIVerve.API.PasswordStrength;
 
 public class Example
 {
@@ -249,8 +249,8 @@ public class Example
         apiClient.SetMaxRetries(3);        // Retry up to 3 times (default: 0, max: 3)
         apiClient.SetRetryDelay(2000);     // Wait 2 seconds between retries
 
-        var queryOptions = new QueryOptions {
-    password = "Password123"
+        var queryOptions = new PasswordStrengthQueryOptions {
+    Password = "Password123"
 };
 
         try
@@ -290,8 +290,8 @@ var apiClient = new PasswordStrengthAPIClient("[YOUR_API_KEY]");
 apiClient.AddCustomHeader("X-Custom-Header", "custom-value");
 apiClient.AddCustomHeader("X-Request-ID", Guid.NewGuid().ToString());
 
-var queryOptions = new QueryOptions {
-    password = "Password123"
+var queryOptions = new PasswordStrengthQueryOptions {
+    Password = "Password123"
 };
 
 var response = await apiClient.ExecuteAsync(queryOptions);
@@ -316,8 +316,8 @@ apiClient.SetLogger(message =>
     Console.WriteLine($"[LOG] {DateTime.Now:yyyy-MM-dd HH:mm:ss} - {message}");
 });
 
-var queryOptions = new QueryOptions {
-    password = "Password123"
+var queryOptions = new PasswordStrengthQueryOptions {
+    Password = "Password123"
 };
 
 var response = await apiClient.ExecuteAsync(queryOptions);
@@ -334,8 +334,8 @@ var apiClient = new PasswordStrengthAPIClient("[YOUR_API_KEY]");
 apiClient.SetMaxRetries(3);           // Retry up to 3 times (default: 0, max: 3)
 apiClient.SetRetryDelay(1500);        // Wait 1.5 seconds between retries (default: 1000ms)
 
-var queryOptions = new QueryOptions {
-    password = "Password123"
+var queryOptions = new PasswordStrengthQueryOptions {
+    Password = "Password123"
 };
 
 var response = await apiClient.ExecuteAsync(queryOptions);
@@ -346,8 +346,8 @@ var response = await apiClient.ExecuteAsync(queryOptions);
 The API client implements `IDisposable` for proper resource cleanup:
 
 ```csharp
-var queryOptions = new QueryOptions {
-    password = "Password123"
+var queryOptions = new PasswordStrengthQueryOptions {
+    Password = "Password123"
 };
 
 using (var apiClient = new PasswordStrengthAPIClient("[YOUR_API_KEY]"))
@@ -368,14 +368,23 @@ using (var apiClient = new PasswordStrengthAPIClient("[YOUR_API_KEY]"))
   "error": null,
   "data": {
     "strength": "weak",
+    "score": 1,
     "passwordInfo": {
       "length": 11,
       "hasSpecialCharacters": false,
       "hasNumbers": true,
       "hasLowercase": true,
       "hasUppercase": true,
-      "hasSpaces": false
-    }
+      "hasSpaces": false,
+      "hasSequentialChars": true,
+      "hasRepeatedChars": false
+    },
+    "recommendations": [
+      "Use at least 12 characters",
+      "Add special characters",
+      "Avoid sequential characters (e.g. abc, 123)"
+    ],
+    "entropyBits": 65.5
   }
 }
 ```
