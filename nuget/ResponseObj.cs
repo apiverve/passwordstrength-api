@@ -25,6 +25,9 @@ namespace APIVerve.API.PasswordStrength
 
         [JsonProperty("data")]
         public Data Data { get; set; }
+
+        [JsonProperty("premium")]
+        public Premium Premium { get; set; }
     }
 
     public partial class Data
@@ -32,28 +35,55 @@ namespace APIVerve.API.PasswordStrength
         [JsonProperty("strength")]
         public string Strength { get; set; }
 
+        [JsonProperty("score")]
+        public long? Score { get; set; }
+
         [JsonProperty("passwordInfo")]
         public PasswordInfo PasswordInfo { get; set; }
+
+        [JsonProperty("recommendations")]
+        public string[] Recommendations { get; set; }
+
+        [JsonProperty("entropyBits")]
+        public double? EntropyBits { get; set; }
     }
 
     public partial class PasswordInfo
     {
         [JsonProperty("length")]
-        public long Length { get; set; }
+        public long? Length { get; set; }
 
         [JsonProperty("hasSpecialCharacters")]
-        public bool HasSpecialCharacters { get; set; }
+        public bool? HasSpecialCharacters { get; set; }
 
         [JsonProperty("hasNumbers")]
-        public bool HasNumbers { get; set; }
+        public bool? HasNumbers { get; set; }
 
         [JsonProperty("hasLowercase")]
-        public bool HasLowercase { get; set; }
+        public bool? HasLowercase { get; set; }
 
         [JsonProperty("hasUppercase")]
-        public bool HasUppercase { get; set; }
+        public bool? HasUppercase { get; set; }
 
         [JsonProperty("hasSpaces")]
-        public bool HasSpaces { get; set; }
+        public bool? HasSpaces { get; set; }
+
+        [JsonProperty("hasSequentialChars")]
+        public bool? HasSequentialChars { get; set; }
+
+        [JsonProperty("hasRepeatedChars")]
+        public bool? HasRepeatedChars { get; set; }
+    }
+
+    public partial class Premium
+    {
+        [JsonProperty("message")]
+        public string Message { get; set; }
+
+        [JsonProperty("upgrade_url")]
+        public Uri UpgradeUrl { get; set; }
+
+        [JsonProperty("locked_fields")]
+        public string[] LockedFields { get; set; }
     }
 }
