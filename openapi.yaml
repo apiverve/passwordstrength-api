@@ -2,9 +2,10 @@ openapi: 3.0.4
 info:
   title: Password Strength
   description: >-
-    Password Strength checks how strong a password is. It returns a strength
-    label and score, a breakdown of the character types used, weak-pattern
-    detection, theoretical entropy in bits, and recommendations to improve it.
+    Password Strength is a password strength checker API that scores how strong
+    a password is. It returns a strength label and score, a breakdown of the
+    character types used, weak-pattern detection, theoretical entropy in bits,
+    and recommendations to improve it.
   termsOfService: https://apiverve.com/terms/
   contact:
     name: APIVerve Support
@@ -19,7 +20,7 @@ servers:
 paths:
   /v1/passwordstrength:
     get:
-      summary: Check Password Strength
+      summary: Password Strength
       description: Check the strength of a password
       operationId: passwordstrength
       parameters:
