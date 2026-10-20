@@ -1,7 +1,7 @@
 {
   "name": "@apiverve/passwordstrength",
-  "version": "1.2.0",
-  "description": "Password Strength checks how strong a password is. It returns a strength label and score, a breakdown of the character types used, weak-pattern detection, theoretical entropy in bits, and recommendations to improve it.",
+  "version": "1.2.2",
+  "description": "Password Strength is a password strength checker API that scores how strong a password is. It returns a strength label and score, a breakdown of the character types used, weak-pattern detection, theoretical entropy in bits, and recommendations to improve it.",
   "main": "index.js",
   "types": "index.d.ts",
   "sideEffects": false,
@@ -23,7 +23,7 @@
     "directory": "npm"
   },
   "keywords": [
-    "password strength", "password strength api", "password strength tool", "password strength software", "password strength service"
+    "password strength api", "password strength checker api", "signup password check api", "password strength checker", "check password strength"
   ],
   "author": {
     "name": "APIVerve",
@@ -34,7 +34,7 @@
   "bugs": {
     "url": "https://github.com/apiverve/passwordstrength-api/issues"
   },
-  "homepage": "https://apiverve.com/marketplace/passwordstrength?utm_source=npm&utm_medium=homepage",
+  "homepage": "https://apiverve.com/marketplace/passwordstrength?utm_source=npm&utm_medium=referral&utm_content=homepage",
   "devDependencies": {
     "mocha": "^11.0.1",
     "chai": "^5.1.2",
