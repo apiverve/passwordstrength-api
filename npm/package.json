@@ -1,6 +1,6 @@
 {
   "name": "@apiverve/passwordstrength",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Password Strength is a password strength checker API that scores how strong a password is. It returns a strength label and score, a breakdown of the character types used, weak-pattern detection, theoretical entropy in bits, and recommendations to improve it.",
   "main": "index.js",
   "types": "index.d.ts",
